@@ -1,0 +1,25 @@
+#docker-compose.yml
+version: "2.0"
+services:
+  flaskapp:
+    build: ./flaskapp
+    image: user/flaskapp
+    networks:
+      - app
+    depends_on:
+      - redis-svr
+  lab12-nginx:
+    build: ./nginx
+    image: nginx
+    ports:
+      - 5006:80
+    networks:
+      - app
+    depends_on:
+      - flaskapp
+  redis-svr:
+    image: redis:latest
+    networks:
+      - app
+networks:
+  app:
