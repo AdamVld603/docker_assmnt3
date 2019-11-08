@@ -1,25 +1,32 @@
+#Adam Valentine
+#Virtualization-->Assmnt3
 #docker-compose.yml
-version: "2.0"
+version: "3.6"
 services:
   flaskapp:
-    build: ./flaskapp
-    image: user/flaskapp
+    #build: ./flaskapp
+    image: vlad2019op/flaskappassmnt3
     networks:
       - app
     depends_on:
-      - redis-svr
-  lab12-nginx:
+      - redis
+    deploy:
+      replicas: 3
+  nginx:
     build: ./nginx
-    image: nginx
+    image: vlad2019op/nginxassmnt3
     ports:
       - 5006:80
     networks:
       - app
     depends_on:
       - flaskapp
-  redis-svr:
-    image: redis:latest
+    deploy:
+      replicas: 3
+  redis:
+    image: redis:5.0.6
     networks:
       - app
 networks:
   app:
+    driver: overlay
