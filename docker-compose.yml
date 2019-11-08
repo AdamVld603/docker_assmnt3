@@ -13,7 +13,7 @@ services:
     deploy:
       replicas: 3
   nginx:
-    build: ./nginx
+    #build: ./nginx
     image: vlad2019op/nginxassmnt3
     ports:
       - 5006:80
