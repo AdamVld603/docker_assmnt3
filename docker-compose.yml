@@ -8,8 +8,8 @@ services:
     image: vlad2019op/flaskappassmnt3
     networks:
       - app
-    depends_on:
-      - redis
+    #depends_on:
+      #- redis
     deploy:
       replicas: 3
   nginx:
@@ -19,8 +19,8 @@ services:
       - 5006:80
     networks:
       - app
-    depends_on:
-      - flaskapp
+    #depends_on:
+      #- flaskapp
     deploy:
       replicas: 3
   redis:
